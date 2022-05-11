@@ -26,4 +26,25 @@ app.get('/', (req, res) => {
         });
 });
 
+app.post('/', (req, res) => {
+    let name = req.body.name;
+    if(name == null) res.send(400);
+    else{
+       docRef.get()
+        .then(doc => {
+            if (!doc.exists) {
+                return res.send('Not Found');
+            }
+            var data = doc.data();
+            data[name] = false;
+            docRef.set(data).then(() => {
+                return res.send(data);
+            });
+        })
+        .catch(err => {
+            return res.send('Error getting document', err);
+        }); 
+    }
+});
+
 exports.todo = functions.https.onRequest(app);
