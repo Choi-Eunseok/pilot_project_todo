@@ -90,4 +90,28 @@ app.put('/', (req, res) => {
     }
 });
 
+app.delete('/', (req, res) => {
+    let name = req.body.name;
+    if(name == null) return res.send(400, "no name");
+    else{
+       docRef.get()
+        .then(doc => {
+            if (!doc.exists) {
+                return res.send(400,'Not Found');
+            }
+            var data = doc.data();
+            if(data[name] == null){
+                return res.send(400, name+" not in the list");
+            }
+            delete data[name];
+            docRef.set(data).then(() => {
+                return res.send(data);
+            });
+        })
+        .catch(err => {
+            return res.send(400, 'Error getting document');
+        }); 
+    }
+});
+
 exports.todo = functions.https.onRequest(app);
