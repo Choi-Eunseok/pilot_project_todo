@@ -26,6 +26,46 @@
 > {
 >   "할 일 제목1": false,
 >   "할 일 제목2": false,
+>   "할 일 제목3": false,
+> }
+> ```
+
+할 일을 수정하는 API
+-------------
+### https://us-central1-pilot-todo.cloudfunctions.net/todo
+#### PUT호출
+1. 값 수정
+> request(body)
+> ```
+> {
+>   "originalName": "할 일 제목3",
+>   "changeValue": true
+> }
+> ```
+
+> response
+> ```
+> {
+>   "할 일 제목1": false,
 >   "할 일 제목2": false,
+>   "할 일 제목3": true,
+> }
+> ```
+
+2. 할 일 제목 수정
+> request(body)
+> ```
+> {
+>   "originalName": "할 일 제목3",
+>   "changeName": "3"
+> }
+> ```
+
+> response
+> ```
+> {
+>   "할 일 제목1": false,
+>   "할 일 제목2": false,
+>   "3": true,
 > }
 > ```
