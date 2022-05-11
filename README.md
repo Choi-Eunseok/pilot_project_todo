@@ -69,3 +69,22 @@
 >   "3": true,
 > }
 > ```
+
+할 일을 삭제하는 API
+-------------
+### https://us-central1-pilot-todo.cloudfunctions.net/todo
+#### DELETE호출
+> request(body)
+> ```
+> {
+>   "name": "할 일 제목3"
+> }
+> ```
+
+> response
+> ```
+> {
+>   "할 일 제목1": false,
+>   "할 일 제목2": false,
+> }
+> ```
